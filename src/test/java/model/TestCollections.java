@@ -20,17 +20,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCollections {
 
+    // 1 --------------------------------
     @Test @Disabled
     void testPrintList() {
         //todo Распечатать содержимое используя for each
     }
 
+    // 2 --------------------------------
     @Test @Disabled
     void testChangeWeightOfFirstByOne() {
         //todo Изменить вес первой коробки на 1.
         assertEquals(new HeavyBox(1,2,3,5), list.get(0));
     }
 
+    // 3 --------------------------------
     @Test @Disabled
     void testDeleteLast() {
         //todo Удалить предпоследнюю коробку.
@@ -39,6 +42,7 @@ public class TestCollections {
         assertEquals(new HeavyBox(1,3,3,4), list.get(list.size()-2));
     }
 
+    // 4 --------------------------------
     @Test @Disabled
     void testConvertToArray() {
         //todo Получить массив содержащий коробки из коллекции тремя способами и вывести на консоль.
@@ -54,12 +58,14 @@ public class TestCollections {
         }, arr);
     }
 
+    // 5 --------------------------------
     @Test @Disabled
     void testDeleteBoxesByWeight() {
         // todo удалить все коробки, которые весят 4
         assertEquals(3, list.size());
     }
 
+    // 6 --------------------------------
     @Test @Disabled
     void testSortBoxesByWeight() {
         // отсортировать коробки по возрастанию веса. При одинаковом весе - по возрастанию объема
@@ -69,12 +75,14 @@ public class TestCollections {
         assertEquals(new HeavyBox(1,3,3,4), list.get(4));
     }
 
+    // 7 --------------------------------
     @Test @Disabled
     void testClearList() {
         //todo Удалить все коробки.
         assertTrue(list.isEmpty());
     }
 
+    // 8 --------------------------------
     @Test @Disabled
     void testReadAllLinesFromFileToList() {
         // todo Прочитать все строки в коллекцию
@@ -83,6 +91,7 @@ public class TestCollections {
         assertEquals("", lines.get(8));
     }
 
+    // 9 --------------------------------
     @Test @Disabled
     void testReadAllWordsFromFileToList() throws IOException {
         // todo прочитать все строки, разбить на слова и записать в коллекцию
@@ -95,6 +104,7 @@ public class TestCollections {
         return null;
     }
 
+    // 10 -------------------------------
     @Test @Disabled
     void testFindLongestWord() {
         // todo Найти самое длинное слово
@@ -105,6 +115,7 @@ public class TestCollections {
         return null;
     }
 
+    // 11 -------------------------------
     @Test @Disabled
     void testAllWordsByAlphabetWithoutRepeat() {
         // todo Получить список всех слов по алфавиту без повторов
@@ -116,12 +127,14 @@ public class TestCollections {
         assertEquals(138, result.size());
     }
 
+    // 12 -------------------------------
     @Test @Disabled
     void testFindMostFrequentWord() {
         // todo Найти самое часто вcтречающееся слово
         assertEquals("the", mostFrequentWord());
     }
 
+    // 13 -------------------------------
     @Test @Disabled
     void testFindWordsByLengthInAlphabetOrder() throws IOException {
         // todo получить список слов, длиной не более 5 символов, переведенных в нижний регистр, в порядке алфавита, без повторов
