@@ -130,8 +130,6 @@ public class TestCollections {
         List<String> words = new ArrayList<>();
         String line;
         while ((line = reader.readLine()) != null) {
-//            line = line.replaceAll("[^a-zA-Z ]", " ");
-//            words.addAll(List.of(line.split("\\s+")));
             words.addAll(List.of(line.split(REGEXP)));
         }
         words.removeIf(String::isEmpty);
@@ -146,21 +144,39 @@ public class TestCollections {
     }
 
     private String findLongestWord() throws IOException {
-        return readAllWordsFromFileToList().stream()
-                .max(Comparator.comparingInt(String::length))
-                .orElseThrow();
+//        return readAllWordsFromFileToList().stream()
+//                .max(Comparator.comparingInt(String::length))
+//                .orElseThrow();
+        String longestWord = "";
+        int maxLength=0;
+        for (String s : readAllWordsFromFileToList()){
+            if(longestWord.length()<s.length()){
+                maxLength = s.length();
+                longestWord=s;
+            }
+        }
+        return longestWord;
     }
 
     // 11 -------------------------------
     @Test
     void testAllWordsByAlphabetWithoutRepeat() throws IOException {
         // todo Получить список всех слов по алфавиту без повторов
-        List<String> result = null;
-        result = readAllWordsFromFileToList().stream()
-                .map(String::toLowerCase)
-                .sorted()
-                .distinct()
-                .collect(Collectors.toList());
+        List<String> result = new ArrayList<>();
+//        result = readAllWordsFromFileToList().stream()
+//                .map(String::toLowerCase)
+//                .sorted()
+//                .distinct()
+//                .collect(Collectors.toList());
+        List<String> tempList =readAllWordsFromFileToList();
+        for (int i =0; i <tempList.size();i++){
+            tempList.set(i,tempList.get(i).toLowerCase());
+        }
+        Set resultSet = new HashSet(tempList);
+        result.addAll(resultSet);
+        result.sort(null);
+
+
         assertEquals("alice", result.get(5));
         assertEquals("all", result.get(6));
         assertEquals("without", result.get(134));
@@ -178,15 +194,25 @@ public class TestCollections {
     @Test
     void testFindWordsByLengthInAlphabetOrder() throws IOException {
         // todo получить список слов, длиной не более 5 символов, переведенных в нижний регистр, в порядке алфавита, без повторов
-        List<String> strings = readAllWordsFromFileToList().stream()
-                .map(String::toLowerCase)
-                .filter(s->s.length()<=5)
-                .sorted()
-                //.distinct() - мало б бути рішенням, але не проходить
-                .toList();
-        assertEquals(202, strings.size());
+//        List<String> strings = readAllWordsFromFileToList().stream()
+//                .map(String::toLowerCase)
+//                .filter(s->s.length()<=5)
+//                .sorted()
+//                .distinct()
+//                .toList();
+        List<String> strings = readAllWordsFromFileToList();
+        strings.removeIf(str->str.length()>5);
+        for (int i =0; i <strings.size();i++){
+            strings.set(i,strings.get(i).toLowerCase());
+        }
+        Set set = new HashSet(strings);
+        strings.clear();
+        strings.addAll(set);
+        strings.sort(null);
+
+        assertEquals(94, strings.size());
         assertEquals("a", strings.get(0));
-        assertEquals("alice", strings.get(10));
+        assertEquals("alice", strings.get(2));
         assertEquals("would", strings.get(strings.size() - 1));
     }
 
